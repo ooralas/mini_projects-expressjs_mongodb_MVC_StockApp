@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs')  %> 
+    <%- include('../partials/nav.ejs')  %>
+    
+    <div class="details content">
+    <div class="create-stock content">
+        <form action="/stocks/<%= stock._id %>/addproduct" method="POST">
+            <label for="title">Fügen Sie ein Produkt zum <strong><%= stock.title %></strong></label>
+            <input name="producktname" type="text" id="producktname" minlength="2" required>
+            <button>hinzufügen</button>
+        </form>
+    </div>
+    </div>
+    
+    <%- include('../partials/footer.ejs')  %>
+</body>
+</html>

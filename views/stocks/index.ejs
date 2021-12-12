@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs')  %> 
+<body>
+    <%- include('../partials/nav.ejs')  %> 
+
+    <h2>Lager Übersicht</h2>
+    <div class="stocks content">
+        <% if (stocks.length > 0 ) { %>
+            <% stocks.forEach(stock => { %>
+                <a class="sinlge" href="/stocks/<%= stock._id %> ">
+                    <h3 class="title"><%= stock.title %></h3>
+                    <p>max Kapazität: <strong>5</strong></p>
+                    <% if (stock.products.length === 5) {%>
+                        <p class="red">verfügbar: <strong><%= 5 - stock.products.length %></strong></p>
+                    <% }else { %>
+                        <p>verfügbar: <strong><%= 5 - stock.products.length %></strong></p>
+                    <% } %>
+                </a>
+            <% }) %>
+        <% } else {%>
+            <p>Keine verfügbare Lager</p>    
+        <% } %>
+             
+    </div>
+
+    <%- include('../partials/footer.ejs')  %>
+</body>
+</html>

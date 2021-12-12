@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs')  %> 
+<body>
+    <%- include('../partials/nav.ejs')  %> 
+    <div class="create-stock content">
+        <form action="/stocks" method="POST">
+            <label for="title">Geben Sie ein Lager-Title</label>
+            <input name="title" type="text" id="title" required>
+            <button>Lager erstellen</button>
+        </form>
+    </div>
+    <%- include('../partials/footer.ejs')  %>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs')  %> 
+<body>
+    <%- include('../partials/nav.ejs')  %> 
+    <div class="details content">
+        <h2><%= stock.title %> </h2>
+
+        <div class="content">
+            <p>Produkts : </p>
+            <div class="container">
+                <div class="stockProducts">
+                    <% stock.products.forEach(product => { %>
+                        <div class="product">
+                            <span> <b><%= product %></b></span>
+                            <span class="deleteProdukt" data-productname="<%= product %>" data-stockid="<%= stock._id %>">delete</span>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+        <a class="delete" data-doc="<%= stock._id %>">delete</a>
+        <a href="/stocks/<%= stock._id %>/addproduct" class="addBtn">add Produkt</a>
+    </div>
+    <%- include('../partials/footer.ejs')  %>
+
+    <script>
+        const toDelete = document.querySelector('a.delete')
+        const toDeleteProdukt = document.getElementsByClassName("deleteProdukt")
+
+        
+        //Delete Product
+        for (const product of toDeleteProdukt) {
+            product.addEventListener('click', e => {
+                let endpoint = `/stocks/${product.dataset.stockid}/${product.dataset.productname}`
+                fetch(endpoint, {
+                    method: 'PUT'
+                })
+                .then((res) => res.json())
+                .then((data) => window.location.href = data.redirect)
+                .catch(e => console.log(e))
+            })
+        }
+
+       
+        //Delete Stock
+        toDelete.addEventListener('click', e => {
+            let endpoint = `/stocks/${toDelete.dataset.doc}`;
+            fetch(endpoint, {
+                method: 'DELETE'
+                })
+                .then((res) => res.json())
+                .then((data) => window.location.href = data.redirect)
+                .catch(err => console.log(err))
+        })
+    </script>
+</body>
+</html>
