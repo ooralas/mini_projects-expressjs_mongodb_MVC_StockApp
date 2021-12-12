@@ -6,8 +6,9 @@ const app = express()
 const Port = process.env.PORT || 3000
 
 //connect to MongoDB
-// const dbURI = 'mongodb+srv://salar:456676@trainingcluster.nw0by.mongodb.net/training?retryWrites=true&w=majority'
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true})
+const dbURI = 'mongodb+srv://salar:456676@trainingcluster.nw0by.mongodb.net/training?retryWrites=true&w=majority'
+// const dbURI = process.env.MONGODB_URI
+mongoose.connect(dbURI, {useNewUrlParser: true})
 .then((result) => {
     console.log("connected to DB")
     app.listen(Port) 
