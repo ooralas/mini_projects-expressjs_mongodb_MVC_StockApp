@@ -3,13 +3,14 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const stockRoutes = require('./routes/stockRoutes')
 const app = express()
+const Port = process.env.PORT || 3000
 
 //connect to MongoDB
-const dbURI = 'mongodb+srv://salar:456676@trainingcluster.nw0by.mongodb.net/training?retryWrites=true&w=majority'
-mongoose.connect(dbURI)
+// const dbURI = 'mongodb+srv://salar:456676@trainingcluster.nw0by.mongodb.net/training?retryWrites=true&w=majority'
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true})
 .then((result) => {
     console.log("connected to DB")
-    app.listen(3000) 
+    app.listen(Port) 
 })
 .catch((err) => {console.log(err)})
 
