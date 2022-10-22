@@ -8,7 +8,6 @@
 
         <div class="content">
             <p>Produkts : </p>
-            <div class="container">
                 <div class="stockProducts">
                     <% stock.products.forEach(product => { %>
                         <div class="product">
@@ -17,7 +16,6 @@
                         </div>
                     <% }) %>
                 </div>
-            </div>
         </div>
         <a class="delete" data-doc="<%= stock._id %>">delete</a>
         <a href="/stocks/<%= stock._id %>/addproduct" class="addBtn">add Produkt</a>
