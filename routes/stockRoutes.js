@@ -1,7 +1,6 @@
 const express = require('express')
 const stockController = require('../controllers/stockController')
-const router = express.Router();
-
+const router = express.Router()
 
 router.get('/', stockController.stock_index)
 
@@ -17,12 +16,16 @@ router.delete('/:id', stockController.stock_delete)
 //Hier habe keine DELETE-Method, da Product ist kein Model, sondern ein Element des Array von Stock, daher update bzw. PUT
 router.put('/:id/:productname', stockController.stock_delete_product)
 
-router.use('/:id/addproduct', stockController.checkStockCapacity)
+router.post(
+  '/:id/addproduct',
+  stockController.checkStockCapacity,
+  stockController.stock_addproduct_post
+)
 
-router.post('/:id/addproduct', stockController.stock_addproduct_post)
+router.get(
+  '/:id/addproduct',
+  stockController.checkStockCapacity,
+  stockController.stock_addproduct_get
+)
 
-router.get('/:id/addproduct', stockController.stock_addproduct_get)
-
-
-
-module.exports = router;
+module.exports = router
